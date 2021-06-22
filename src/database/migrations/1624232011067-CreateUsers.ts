@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {MigrationInterface, QueryRunner, Table, Unique} from "typeorm";
 
 export class CreateUsers1624232011067 implements MigrationInterface {
 
@@ -17,7 +17,26 @@ export class CreateUsers1624232011067 implements MigrationInterface {
                         type: "varchar"
                     },
                     {
+                        name: 'email',
+                        type: 'varchar',
+                        isUnique: true
+                    },
+                    {
+                        name: 'password',
+                        type: 'varchar',
+                    },
+                    {
+                        name: 'admin',
+                        type: 'boolean',
+                        default: false
+                    },
+                    {
                         name: "created_at",
+                        type: "timestamp",
+                        default: "now()"
+                    },
+                    {
+                        name: "updated_at",
                         type: "timestamp",
                         default: "now()"
                     }
@@ -27,6 +46,7 @@ export class CreateUsers1624232011067 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable('users')
     }
 
 }

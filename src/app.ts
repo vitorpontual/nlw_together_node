@@ -1,9 +1,10 @@
 import "reflect-metadata"
 import express from 'express';
+
 import "./database"
 import { router } from "./routes";
 
-// código together
+// código 1ºtogether, 2º
 
 const app = express();
 
