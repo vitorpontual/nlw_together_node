@@ -1,4 +1,5 @@
 import { getCustomRepository } from "typeorm";
+import { AppError } from "../errors/AppError";
 import { UsersRepository } from "../repositories/UsersRepository";
 
 interface IUserRequest {
@@ -13,13 +14,13 @@ export class CreateUserService {
 
 
     if(!email){
-      throw new Error("Email field empty")
+      throw new AppError("Email field empty")
     }
     
     const userAlreadyExists = await usersRepository.findOne({email})
 
     if(userAlreadyExists){
-      throw new Error("User already exists")
+      throw new AppError("User already exists")
     }
 
     const user = usersRepository.create({
