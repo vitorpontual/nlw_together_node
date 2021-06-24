@@ -12,7 +12,6 @@ export class CreateTagController {
     
     const tag = await createTagService.execute(name)
     
-    console.log(name)
     return response.json(tag)
   }
 }

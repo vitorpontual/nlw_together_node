@@ -1,3 +1,4 @@
+import { hash } from "bcryptjs";
 import { getCustomRepository } from "typeorm";
 import { AppError } from "../errors/AppError";
 import { UsersRepository } from "../repositories/UsersRepository";
@@ -9,8 +10,12 @@ interface IUserRequest {
   admin?: boolean;
 }
 export class CreateUserService {
-    async execute({ name, email, password, admin}: IUserRequest){
+    async execute({ name, email, password, admin = false}: IUserRequest){
     const usersRepository =  getCustomRepository(UsersRepository);
+
+    const nameCap = name.replace(/\w\S*/g, (w) => (w.replace(/^\w/, (c) => c.toUpperCase())))
+
+    const passHash = await hash(password, 8)
 
 
     if(!email){
@@ -24,10 +29,11 @@ export class CreateUserService {
     }
 
     const user = usersRepository.create({
-      name, email, password, admin
+      name: nameCap, email, password: passHash, admin
     })
 
     await usersRepository.save(user)
+
 
     return user;
   }
