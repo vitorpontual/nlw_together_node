@@ -20,6 +20,6 @@
 
   [ x ] Não é permitido um usuário cadastrar um elogio para si.
   
-  [ ] Não é permitido cadastrar elogio para usuários inválidos.
+  [ x ] Não é permitido cadastrar elogio para usuários inválidos.
 
   [ x ] O usuário precisa estar autenticado na aplicação 
