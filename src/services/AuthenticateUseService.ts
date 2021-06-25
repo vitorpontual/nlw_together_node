@@ -28,7 +28,7 @@ export class AuthenticateUserService {
 
     const token = sign({
       email: user.email
-    }, auth.jwt_secrte, {
+    }, auth.jwt_secret, {
       subject: user.id,
       expiresIn: auth.expires_token
     })

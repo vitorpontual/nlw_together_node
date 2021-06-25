@@ -2,9 +2,9 @@ import "reflect-metadata"
 import 'express-async-errors'
 import express, { NextFunction, Request, Response } from 'express';
 
-import "./database"
+import "../database"
 import { router } from "./routes";
-import { AppError } from "./errors/AppError";
+import { AppError } from "../errors/AppError";
 
 // código 1ºtogether, 2ºunidade, 3ºembuscadaevolução, 4º legacy, 5º
 
